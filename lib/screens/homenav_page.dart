@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/components/course_list.dart';
 import 'package:rebirthdemo/components/mcq_list.dart';
@@ -17,8 +18,8 @@ class HomenavPage extends StatefulWidget {
 class _HomenavPageState extends State<HomenavPage> {
   @override
   Widget build(BuildContext context) {
-    int _currentIndex = 0;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 75,
         shape: const RoundedRectangleBorder(
@@ -36,6 +37,7 @@ class _HomenavPageState extends State<HomenavPage> {
             );
           },
           icon: const CircleAvatar(
+            radius: 25,
             backgroundImage: AssetImage('assets/images/pp.jpg'),
           ),
         ),
@@ -53,7 +55,19 @@ class _HomenavPageState extends State<HomenavPage> {
             icon: const Icon(Icons.more_vert),
           ),
         ],
-        title: const Text('Hi User'),
+        title: const Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Hi User',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+            ),
+            Text('Good Afternoon',
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15))
+          ],
+        ),
+
         backgroundColor: const Color(0xFF2B3C98),
         foregroundColor: Colors.white,
         // bottom: PreferredSize(
@@ -84,7 +98,7 @@ class _HomenavPageState extends State<HomenavPage> {
             ),
             Container(
               margin: const EdgeInsets.all(5.0),
-              // color: Colors.lime,
+              color: Colors.white,
               height: Get.height * 0.244,
               width: double.infinity,
               child: const CourseList(),
@@ -98,7 +112,7 @@ class _HomenavPageState extends State<HomenavPage> {
             ),
             Container(
               margin: const EdgeInsets.all(5.0),
-              // color: Colors.pink,
+              color: Colors.white,
               height: Get.height * 0.203,
               width: double.infinity,
               child: const McqList(),
@@ -112,7 +126,7 @@ class _HomenavPageState extends State<HomenavPage> {
             ),
             Container(
               margin: const EdgeInsets.all(5.0),
-              // color: Colors.cyan,
+              color: Colors.white,
               height: Get.height * 0.3,
               width: double.infinity,
               child: const NewsList(),

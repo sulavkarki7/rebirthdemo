@@ -56,11 +56,6 @@ class NewsListtile extends StatelessWidget {
                     SizedBox(
                       width: Get.width * 0.02,
                     ),
-                    const Icon(Icons.calendar_month_outlined, size: 11),
-                    Text(
-                      '$newsmonth $newsDay, $newsYear',
-                      style: durationStyle,
-                    )
                   ],
                 ),
                 Padding(

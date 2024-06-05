@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool isChecked = false;
   String userEmail = '';
+  bool isPasswordVisible = false;
 
   final TextEditingController emailController = TextEditingController();
 
@@ -62,10 +63,22 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  obscureText: !isPasswordVisible,
+                  decoration: InputDecoration(
                     hintText: 'Password',
                     prefixIcon: Icon(Icons.lock_sharp),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isPasswordVisible = !isPasswordVisible;
+                        });
+                      },
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),

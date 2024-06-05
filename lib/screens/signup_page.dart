@@ -13,6 +13,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   String userEmail = '';
   bool isChecked = false;
+  bool isPasswordVisible = false;
   final TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -74,11 +75,23 @@ class _SignupPageState extends State<SignupPage> {
               child: Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  obscureText: !isPasswordVisible,
+                  decoration: InputDecoration(
                     hintText: 'Password',
-                    prefixIcon: Icon(Icons.lock_sharp),
-                    border: OutlineInputBorder(
+                    prefixIcon: const Icon(Icons.lock_sharp),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isPasswordVisible = !isPasswordVisible;
+                        });
+                      },
+                    ),
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),
                   ),
@@ -90,11 +103,23 @@ class _SignupPageState extends State<SignupPage> {
               child: Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  obscureText: !isPasswordVisible,
+                  decoration: InputDecoration(
                     hintText: 'Confirm Password',
-                    prefixIcon: Icon(Icons.lock_sharp),
-                    border: OutlineInputBorder(
+                    prefixIcon: const Icon(Icons.lock_sharp),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        isPasswordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isPasswordVisible = !isPasswordVisible;
+                        });
+                      },
+                    ),
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),
                   ),
