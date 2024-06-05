@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rebirthdemo/constants.dart';
+import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/screens/home_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
             },
             children: <Widget>[
               buildPage(1, 'assets/images/firstpage.png',
-                  'Welcome To Our E-learning App'),
+                  'Welcome To Our E-learning Application'),
               buildPage(2, 'assets/images/secondpage.png',
                   'Discover Your Learning Adventure'),
               buildPage(3, 'assets/images/thirdpage.png',
@@ -74,48 +74,45 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildPage(int pageNumber, String imagePath, String pageTitle) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            pageTitle,
-            style: titleTextStyle,
-            textAlign: TextAlign.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          pageTitle,
+          style: titleTextStyle,
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Image.asset(imagePath),
+        const SizedBox(
+          height: 115,
+        ),
+        CircleAvatar(
+          radius: 25,
+          backgroundColor: Colors.grey[200],
+          child: IconButton(
+            icon: const Icon(Icons.arrow_forward_ios),
+            onPressed: () {
+              if (_pageController.hasClients && _currentPage != _numPages - 1) {
+                _pageController.nextPage(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeIn,
+                );
+              } else {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ),
+                  (Route<dynamic> route) => false,
+                );
+              }
+            },
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          Image.asset(imagePath),
-          const SizedBox(
-            height: 115,
-          ),
-          CircleAvatar(
-            radius: 25,
-            backgroundColor: Colors.grey[200],
-            child: IconButton(
-              icon: const Icon(Icons.arrow_forward_ios),
-              onPressed: () {
-                if (_pageController.hasClients &&
-                    _currentPage != _numPages - 1) {
-                  _pageController.nextPage(
-                    duration: const Duration(milliseconds: 400),
-                    curve: Curves.easeIn,
-                  );
-                } else {
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                    (Route<dynamic> route) => false,
-                  );
-                }
-              },
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

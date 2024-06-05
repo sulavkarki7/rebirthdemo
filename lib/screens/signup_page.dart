@@ -1,7 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:rebirthdemo/constants.dart';
+import 'package:get/get.dart';
+import 'package:rebirthdemo/components/constants.dart';
+import 'package:rebirthdemo/screens/home_screen.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -11,58 +11,45 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  String userEmail = '';
   bool isChecked = false;
+  final TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_outlined),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
-        body: Column(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'SIGN UP',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
+            SizedBox(
+              height: Get.height * 0.08,
             ),
-            // ListTile(
-            //   leading: Icon(
-            //     Icons.person_2_outlined,
-            //   ),
-            //   title: Text('Username'),
-            // )
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 30),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: 'Username',
-                    hintStyle: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    prefixIcon: Icon(Icons.person_2_outlined),
-                  ),
-                ),
-              ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset('assets/images/Logo.png'),
+            ),
+            const Text(
+              'Welcome Back !',
+              style: titleTextStyle,
+            ),
+            const Text('Login To Your Existant Account'),
+            SizedBox(
+              height: Get.height * 0.015,
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 30),
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(6.0),
                 child: TextFormField(
+                  controller: emailController,
                   decoration: const InputDecoration(
                     hintText: 'Email',
-                    prefixIcon: Icon(Icons.email_outlined),
+                    prefixIcon: Icon(Icons.email_sharp),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    ),
                   ),
                 ),
               ),
@@ -70,19 +57,51 @@ class _SignupPageState extends State<SignupPage> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 30),
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(6.0),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    hintText: 'Password',
-                    hintStyle: ttextstyle,
-                    prefixIcon: Icon(Icons.lock_outlined),
+                    hintText: 'Phone Number',
+                    prefixIcon: Icon(Icons.phone_sharp),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Password',
+                    prefixIcon: Icon(Icons.lock_sharp),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    ),
+                  ),
+                ),
+              ),
             ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Confirm Password',
+                    prefixIcon: Icon(Icons.lock_sharp),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            //
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -94,38 +113,115 @@ class _SignupPageState extends State<SignupPage> {
                       });
                     }),
                 const Text(
-                  "I agree to all the ",
+                  "I accept the terms and conditions",
                   style: TextStyle(color: Colors.black),
                 ),
-                const Text(
-                  'Terms & Conditions',
-                  style: TextStyle(
-                      color: Colors.black,
-                      decoration: TextDecoration.underline),
-                ),
+                SizedBox(
+                  width: Get.width * 0.23,
+                )
               ],
-            ),
-
-            const SizedBox(
-              height: 10,
             ),
 
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  log('$isChecked');
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Sign In Successful'),
+                        content: Text(
+                            'You are signed in as ${emailController.text}'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Text('OK'))
+                        ],
+                      );
+                    },
+                  );
                 },
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[700],
+                  foregroundColor: Colors.white,
                   elevation: 5,
                   padding: const EdgeInsets.symmetric(horizontal: 130),
                 ),
                 child: const Text(
-                  'Create Account',
-                  // style: TextStyle(color: Colors.white),
+                  'Sign In',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                 ),
               ),
             ),
+            SizedBox(
+              height: Get.height * 0.01,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Divider(
+                    color: Colors.black,
+                    thickness: 1,
+                    indent: 38,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    'Or',
+                    style: ttextstyle,
+                  ),
+                ),
+                Expanded(
+                  child: Divider(
+                    endIndent: 38,
+                    color: Colors.black,
+                    thickness: 1,
+                  ),
+                ),
+              ],
+            ),
+
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomeScreen()));
+              },
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Already have an account ? ", style: ttextstyle),
+                  Text(
+                    'Login Here',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Get.height * 0.04,
+            ),
+            const Text('Joining our app means you agree with out '),
+            const Text(
+              'Terms and Conditions ',
+              style: TextStyle(
+                  color: Colors.blue, decoration: TextDecoration.underline),
+            ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

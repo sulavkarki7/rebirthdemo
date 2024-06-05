@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rebirthdemo/screens/home_page.dart';
 import 'package:rebirthdemo/screens/splash_screen.dart';
 
@@ -16,11 +17,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
-      // // routes: {
-      // //   '/next': (context) => const FirstPage(),
+
       // }
     );
   }

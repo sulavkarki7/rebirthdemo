@@ -17,8 +17,8 @@ class _SplashScreenState extends State<SplashScreen> {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          Color.fromARGB(255, 31, 113, 214),
-          Color.fromARGB(255, 183, 237, 82),
+          Colors.white,
+          Colors.white,
         ],
       ),
       childWidget: SizedBox(
@@ -26,8 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
         width: 180,
         child: Image.asset("assets/images/Logo.png"),
       ),
-      duration: const Duration(milliseconds: 4500),
-      animationDuration: const Duration(milliseconds: 2500),
+      duration: const Duration(milliseconds: 1500),
+      animationDuration: const Duration(milliseconds: 1000),
       onAnimationEnd: () => debugPrint("On Scale End"),
       nextScreen: const HomePage(),
     );

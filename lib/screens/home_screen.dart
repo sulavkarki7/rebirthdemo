@@ -1,8 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:rebirthdemo/constants.dart';
+import 'package:rebirthdemo/components/constants.dart';
+import 'package:rebirthdemo/screens/first_page.dart';
+import 'package:rebirthdemo/screens/homenav_page.dart';
 import 'package:rebirthdemo/screens/signup_page.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +16,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool isChecked = false;
+  String userEmail = '';
+
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 25,
+              height: Get.height * 0.1,
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),
@@ -40,9 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: TextFormField(
+                  controller: emailController,
                   decoration: const InputDecoration(
-                    hintText: 'Username',
-                    prefixIcon: Icon(Icons.person_2_outlined),
+                    hintText: 'Email',
+                    prefixIcon: Icon(Icons.email_sharp),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),
@@ -58,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   obscureText: true,
                   decoration: const InputDecoration(
                     hintText: 'Password',
-                    prefixIcon: Icon(Icons.lock_outlined),
+                    prefixIcon: Icon(Icons.lock_sharp),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),
@@ -99,7 +106,31 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Log In Successful'),
+                        content: Text(
+                            'You are logged in as ${emailController.text}'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const FirstPage(),
+                                  ),
+                                  (Route<dynamic> route) => false,
+                                );
+                              },
+                              child: const Text('OK'))
+                        ],
+                      );
+                    },
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[700],
                   foregroundColor: Colors.white,
@@ -141,12 +172,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            TextButton.icon(
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.black, backgroundColor: Colors.white),
-              icon: Image.asset('assets/images/google_logo.png', height: 18.0),
-              label: Text('Continue with Google'),
-              onPressed: () {},
+            Container(
+              height: 50,
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: 30),
+              child: Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: TextButton.icon(
+                  style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.grey[100]),
+                  icon: Image.asset('assets/images/google_logo.png',
+                      height: 50.0),
+                  label: Text('Continue with google'),
+                  onPressed: () {},
+                ),
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -168,8 +209,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 65,
+            SizedBox(
+              height: Get.height * 0.06,
             ),
             const Text('Joining our app means you agree with out '),
             const Text(
