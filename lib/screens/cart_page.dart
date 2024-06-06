@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:rebirthdemo/components/constants.dart';
-import 'package:rebirthdemo/screens/course_page.dart';
-import 'package:rebirthdemo/screens/homenav_page.dart';
-import 'package:rebirthdemo/screens/mcq_page.dart';
-import 'package:rebirthdemo/screens/news_page.dart';
+import 'package:rebirthdemo/components/coursecontainer_for_courses_list.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -13,14 +12,25 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  int _currentIndex = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('cartttt'),
+        backgroundColor: Colors.white,
+        title: Text(
+          'My Cart',
+          style: appbarTitleStyle,
+        ),
       ),
-      body: Text('Carttttt'),
+      body: ListView(
+        children: [
+          SizedBox(
+            height: Get.height * 0.02,
+          ),
+          const CoursecontainerForCoursesList(),
+        ],
+      ),
       //
     );
   }

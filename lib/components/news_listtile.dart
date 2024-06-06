@@ -24,19 +24,6 @@ class NewsListtile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return ListTile(
-    // //   leading: Image.asset('assets/images/44.png', width: 80, height: 80),
-    //   title: const Text(
-    //     'Welcoming The New Year With Joy and Hope',
-    //     style: mcqewsStyle,
-    //   ),
-    //   subtitle: const Text(
-    //     'Happy New Year! What are your plans or resolutions for the year ahead?',
-    //     style: newscontentStyle,
-    //   ),
-    //   trailing: const Icon(Icons.arrow_forward_ios),
-    // );
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -56,6 +43,8 @@ class NewsListtile extends StatelessWidget {
                     SizedBox(
                       width: Get.width * 0.02,
                     ),
+                    const Icon(Icons.calendar_month_outlined, size: 11),
+                    Text('$newsmonth $newsDay $newsYear', style: durationStyle),
                   ],
                 ),
                 Padding(

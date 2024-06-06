@@ -21,5 +21,7 @@ const mcqewsStyle = TextStyle(
 const newscontentStyle = TextStyle(
     fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xFF676767));
 const appbarTitleStyle = TextStyle(
-    fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF003400));
+    fontSize: 22, fontWeight: FontWeight.w600, color: Color(0xFF003400));
 const iconColor = Color(0xFF2B3C98);
+const editprofileStyle = TextStyle(
+    fontSize: 16, fontWeight: FontWeight.w400, color: Color(0xFF737272));

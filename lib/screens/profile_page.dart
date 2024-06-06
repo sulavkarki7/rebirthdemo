@@ -13,23 +13,32 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  List<ListtileForProfile> liist = ListtileForProfile.getlist();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios,
+              size: 20, color: Colors.black), // Your custom icon
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: const Text(
+          'Profile',
+          style: appbarTitleStyle,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: Get.height * 0.02),
+            SizedBox(height: Get.height * 0.045),
             Stack(
               alignment: Alignment.bottomRight,
               children: [
                 const CircleAvatar(
                   backgroundColor: Colors.black45,
                   radius: 70.00,
-                  backgroundImage: AssetImage("assets/images/pp.jpg"),
+                  backgroundImage: AssetImage("assets/images/DP.png"),
                 ),
                 Positioned(
                   bottom: 0,
@@ -40,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     // height: 5,
                     // width: 55,
                     decoration: BoxDecoration(
-                        color: Colors.red[700],
+                        color: Color(0xFF2B3C98),
                         borderRadius: BorderRadius.circular(30.0),
                         border: Border.all(width: 2, color: Colors.white)),
                     child: IconButton(
@@ -54,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                       icon: const Icon(
                         size: 20,
-                        Icons.edit,
+                        Icons.border_color,
                         color: Colors.white,
                       ),
                     ),
@@ -65,40 +74,15 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: Get.height * 0.02,
             ),
-
             Text(
               'John',
               style: productTitleStyle,
             ),
-
-            // ListView.builder(
-            //   itemCount: proofile.length,
-            //   shrinkWrap: true,
-            //   itemBuilder: (context, index) => Row(
-            //     children: [
-            //       Icon(proofile[index].icon),
-            //       Text(proofile[index].title),
-            //     ],
-            //   ),
-            // ),
-            ListtileForProfile(
-                title: "My Profile", icon: Icons.account_circle_outlined),
-            ListtileForProfile(
-                title: "Payment Methods", icon: Icons.payment_outlined),
-            ListtileForProfile(
-                title: "Settings", icon: Icons.settings_outlined),
-
-            ListtileForProfile(
-                title: "Help Cneter", icon: Icons.help_center_outlined),
-            ListtileForProfile(
-                title: "Privacy Policy", icon: Icons.privacy_tip_outlined),
-            ListtileForProfile(
-                title: "Assignments", icon: Icons.assignment_outlined),
-            ListtileForProfile(
-                title: "Syllabus", icon: Icons.menu_book_outlined),
-
-            ListtileForProfile(title: "Course History", icon: Icons.history),
-            ListtileForProfile(title: "Log Out", icon: Icons.logout_rounded),
+            ListView.builder(
+              itemCount: liist.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) => liist[index],
+            ),
           ],
         ),
       ),

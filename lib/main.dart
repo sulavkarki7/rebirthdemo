@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rebirthdemo/screens/home_page.dart';
+
 import 'package:rebirthdemo/screens/splash_screen.dart';
 
 void main() {

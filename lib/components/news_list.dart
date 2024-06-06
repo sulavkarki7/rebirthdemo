@@ -53,11 +53,27 @@ List<News> getNews() {
         newsImage: Image.asset('assets/images/44.png'),
         newsDay: 22,
         newsYear: 2024),
+    News(
+        newsTitle: 'Welcoming the New Year with joy and hope',
+        newsmonth: 'Aug',
+        newsSubTitle:
+            'Happy New Year! What are your plans or resolutions for the year ahead?',
+        newsImage: Image.asset('assets/images/33.png'),
+        newsDay: 19,
+        newsYear: 2023),
+    News(
+        newsTitle: 'Welcoming the New Year with joy and hope',
+        newsmonth: 'Feb',
+        newsSubTitle:
+            'Happy New Year! What are your plans or resolutions for the year ahead?',
+        newsImage: Image.asset('assets/images/44.png'),
+        newsDay: 29,
+        newsYear: 2024),
   ];
 }
 
 class _NewsListState extends State<NewsList> {
-  List<News> news = getNews();
+  static List<News> news = getNews();
   @override
   Widget build(BuildContext context) {
     return ListView(

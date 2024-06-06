@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rebirthdemo/components/constants.dart';
-import 'package:rebirthdemo/screens/cart_page.dart';
-import 'package:rebirthdemo/screens/course_page.dart';
-import 'package:rebirthdemo/screens/homenav_page.dart';
-import 'package:rebirthdemo/screens/mcq_page.dart';
+
+import 'package:rebirthdemo/components/news_list.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({super.key});
@@ -13,14 +11,20 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  int _currentIndex = 2;
+  // static List<News> news = getNews();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('All News'),
+        backgroundColor: Colors.white,
+        title: Text(
+          'All News',
+          style: appbarTitleStyle,
+        ),
       ),
-      body: Text('Newssss'),
+      body: const NewsList(),
       //
     );
   }
