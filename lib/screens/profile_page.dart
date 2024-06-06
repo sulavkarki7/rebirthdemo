@@ -19,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios,
+          icon: const Icon(Icons.arrow_back_ios,
               size: 20, color: Colors.black), // Your custom icon
           onPressed: () => Navigator.of(context).pop(),
         ),
@@ -49,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     // height: 5,
                     // width: 55,
                     decoration: BoxDecoration(
-                        color: Color(0xFF2B3C98),
+                        color: const Color(0xFF2B3C98),
                         borderRadius: BorderRadius.circular(30.0),
                         border: Border.all(width: 2, color: Colors.white)),
                     child: IconButton(
@@ -74,7 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: Get.height * 0.02,
             ),
-            Text(
+            const Text(
               'John',
               style: productTitleStyle,
             ),

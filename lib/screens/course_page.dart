@@ -3,14 +3,33 @@ import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/components/coursecontainer_for_courses_list.dart';
 
 class CoursePage extends StatefulWidget {
-  const CoursePage({super.key});
+  final bool autoFocusSearch;
+  const CoursePage({super.key, this.autoFocusSearch = false});
 
   @override
   State<CoursePage> createState() => _CoursePageState();
 }
 
 class _CoursePageState extends State<CoursePage> {
-  // int _currentIndex = 1;
+  late FocusNode myFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    myFocusNode = FocusNode();
+    if (widget.autoFocusSearch) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        myFocusNode.requestFocus();
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    myFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +46,9 @@ class _CoursePageState extends State<CoursePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              focusNode: myFocusNode,
+
+              // autofocus: true,
               decoration: InputDecoration(
                 focusColor: Colors.green[100],
                 hintText: 'Search',

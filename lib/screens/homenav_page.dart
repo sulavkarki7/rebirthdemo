@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +5,7 @@ import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/components/course_list.dart';
 import 'package:rebirthdemo/components/mcq_list.dart';
 import 'package:rebirthdemo/components/news_list.dart';
+import 'package:rebirthdemo/screens/course_page.dart';
 import 'package:rebirthdemo/screens/profile_page.dart';
 
 class HomenavPage extends StatefulWidget {
@@ -43,7 +43,14 @@ class _HomenavPageState extends State<HomenavPage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CoursePage(autoFocusSearch: true),
+                ),
+              );
+            },
             icon: const Icon(Icons.search),
           ),
           IconButton(

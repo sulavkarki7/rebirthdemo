@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/screens/assignment_page.dart';
+import 'package:rebirthdemo/screens/course_history_page.dart';
 import 'package:rebirthdemo/screens/course_page.dart';
 import 'package:rebirthdemo/screens/help_center_page.dart';
 import 'package:rebirthdemo/screens/log_out_page.dart';
@@ -64,7 +65,7 @@ class ListtileForProfile extends StatelessWidget {
       ListtileForProfile(
         title: "Course History",
         icon: Icons.history,
-        ownpage: const CoursePage(),
+        ownpage: const CourseHistoryPage(),
       ),
       ListtileForProfile(
         title: "Log Out",

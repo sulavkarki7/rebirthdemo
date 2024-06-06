@@ -1,9 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/screens/first_page.dart';
-import 'package:rebirthdemo/screens/homenav_page.dart';
+import 'package:rebirthdemo/screens/forget_psw.dart';
+
 import 'package:rebirthdemo/screens/signup_page.dart';
 import 'package:get/get.dart';
 
@@ -66,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   obscureText: !isPasswordVisible,
                   decoration: InputDecoration(
                     hintText: 'Password',
-                    prefixIcon: Icon(Icons.lock_sharp),
+                    prefixIcon: const Icon(Icons.lock_sharp),
                     suffixIcon: IconButton(
                       icon: Icon(
                         isPasswordVisible
@@ -79,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       },
                     ),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     ),
                   ),
@@ -106,11 +105,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                const Text(
-                  'Forget Password',
-                  style: TextStyle(
-                      color: Colors.black,
-                      decoration: TextDecoration.underline),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ForgetPsw()));
+                  },
+                  child: const Text(
+                    'Forget Password',
+                    style: TextStyle(
+                        color: Colors.black,
+                        decoration: TextDecoration.underline),
+                  ),
                 ),
               ],
             ),
@@ -188,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               height: 50,
               width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 30),
+              margin: const EdgeInsets.symmetric(horizontal: 30),
               child: Padding(
                 padding: const EdgeInsets.all(3.0),
                 child: TextButton.icon(
@@ -197,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       backgroundColor: Colors.grey[100]),
                   icon: Image.asset('assets/images/google_logo.png',
                       height: 50.0),
-                  label: Text('Continue with google'),
+                  label: const Text('Continue with google'),
                   onPressed: () {},
                 ),
               ),

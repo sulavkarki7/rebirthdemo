@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rebirthdemo/components/constants.dart';
+import 'package:rebirthdemo/components/mcq_list.dart';
 
 class McqPage extends StatefulWidget {
   const McqPage({super.key});
@@ -13,12 +14,16 @@ class _McqPageState extends State<McqPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'All MCQs',
           style: appbarTitleStyle,
         ),
       ),
-      body: Text('MCQssss'),
+      body: ListView(
+        children: const [
+          McqList(),
+        ],
+      ),
     );
   }
 }

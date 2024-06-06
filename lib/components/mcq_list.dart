@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:rebirthdemo/components/constants.dart';
 
 class McqList extends StatefulWidget {
@@ -13,7 +13,6 @@ class McqList extends StatefulWidget {
 
 class Mcq {
   final String courseFirstTitle;
-  // final String courseSecondTitle;
   final int coursePrice;
   final int courseRating;
   final Image courseImage;
@@ -35,7 +34,6 @@ List<Mcq> getCMcq() {
   return [
     Mcq(
       courseFirstTitle: 'Japanese Basic N5',
-      // courseSecondTitle: 'Mcq 1',
       coursePrice: 500,
       courseRating: 4,
       courseImage: Image.asset('assets/images/33.png'),
@@ -44,7 +42,6 @@ List<Mcq> getCMcq() {
     ),
     Mcq(
       courseFirstTitle: 'JFT - Basic',
-      // courseSecondTitle: 'Mcq 2',
       coursePrice: 600,
       courseRating: 3,
       courseImage: Image.asset('assets/images/44.png'),
@@ -53,7 +50,6 @@ List<Mcq> getCMcq() {
     ),
     Mcq(
       courseFirstTitle: 'Japanese Basic N5',
-      // courseSecondTitle: 'Mcq 3',
       coursePrice: 400,
       courseRating: 3,
       courseImage: Image.asset('assets/images/33.png'),
@@ -62,7 +58,6 @@ List<Mcq> getCMcq() {
     ),
     Mcq(
       courseFirstTitle: 'JFT - Basic',
-      // courseSecondTitle: 'Course 4',
       coursePrice: 400,
       courseRating: 5,
       courseImage: Image.asset('assets/images/44.png'),
@@ -77,13 +72,13 @@ class _McqListState extends State<McqList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      physics: ClampingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       shrinkWrap: true,
-      itemCount: 4,
+      itemCount: mcqs.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         return Container(
-          margin: EdgeInsets.symmetric(horizontal: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 5),
           color: Colors.white,
           height: Get.height * 0.29,
           width: Get.width * 0.48,
@@ -91,7 +86,6 @@ class _McqListState extends State<McqList> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               mcqs[index].courseImage,
-
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -105,23 +99,20 @@ class _McqListState extends State<McqList> {
                       SizedBox(
                         width: Get.width * 0.08,
                       ),
-                      // / Add some space between the price and the rating
                       RatingBar.builder(
                         initialRating: mcqs[index].courseRating.toDouble(),
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
-                        itemSize: 15, // Adjust the size of the stars
+                        itemSize: 15,
                         itemPadding:
                             const EdgeInsets.symmetric(horizontal: 0.1),
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,
                           color: Colors.amber,
                         ),
-                        onRatingUpdate: (rating) {
-                          // log('Rating is: $rating');
-                        },
+                        onRatingUpdate: (rating) {},
                       ),
                     ],
                   ),
@@ -131,27 +122,18 @@ class _McqListState extends State<McqList> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  // Text(
-                  //   courses[index].courseSecondTitle,
-                  //   style: productTitleStyle,
-                  // ),
                 ],
               ),
-
-              // Duration
-
               Row(
                 children: [
                   SizedBox(
                     width: Get.width * 0.02,
                   ),
                   const Icon(Icons.access_time, size: 11),
-
                   Text(
                       '${mcqs[index].courseHRDuration} hr ${mcqs[index].courseMinDuration} min'),
-                  // hr courses[index].courseMinDuration min,
                 ],
-              ), // Photo // Price
+              ),
             ],
           ),
         );
