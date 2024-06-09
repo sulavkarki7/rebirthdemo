@@ -3,6 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:rebirthdemo/components/constants.dart';
+import 'package:rebirthdemo/components/course_list.dart';
+import 'package:rebirthdemo/screens/course_detail_page.dart';
 
 class CourseContainer extends StatelessWidget {
   const CourseContainer({

@@ -12,9 +12,6 @@ import 'package:rebirthdemo/screens/homenav_page.dart';
 import 'package:rebirthdemo/screens/mcq_page.dart';
 import 'package:rebirthdemo/screens/news_page.dart';
 
-import 'package:rebirthdemo/screens/profile_page.dart';
-import 'package:rebirthdemo/screens/home_screen.dart';
-
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
 
