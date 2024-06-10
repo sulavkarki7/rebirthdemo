@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 import 'package:get/get.dart';
 import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/components/course_content_lesson.dart';

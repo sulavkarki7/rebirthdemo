@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 import 'package:rebirthdemo/components/constants.dart';
+import 'package:rebirthdemo/screens/mcq_detail_page.dart';
 
 class McqList extends StatefulWidget {
   const McqList({super.key});
@@ -77,64 +78,71 @@ class _McqListState extends State<McqList> {
       itemCount: mcqs.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 5),
-          color: Colors.white,
-          height: Get.height * 0.29,
-          width: Get.width * 0.48,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              mcqs[index].courseImage,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        '   Rs. ${mcqs[index].coursePrice}',
-                        style: priceStyle,
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.08,
-                      ),
-                      RatingBar.builder(
-                        initialRating: mcqs[index].courseRating.toDouble(),
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemSize: 15,
-                        itemPadding:
-                            const EdgeInsets.symmetric(horizontal: 0.1),
-                        itemBuilder: (context, _) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const McqDetailPage();
+            }));
+          },
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 5),
+            color: Colors.white,
+            height: Get.height * 0.29,
+            width: Get.width * 0.48,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                mcqs[index].courseImage,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          '   Rs. ${mcqs[index].coursePrice}',
+                          style: priceStyle,
                         ),
-                        onRatingUpdate: (rating) {},
-                      ),
-                    ],
-                  ),
-                  Text(
-                    '  ${mcqs[index].courseFirstTitle}',
-                    style: mcqewsStyle,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.02,
-                  ),
-                  const Icon(Icons.access_time, size: 11),
-                  Text(
-                      '${mcqs[index].courseHRDuration} hr ${mcqs[index].courseMinDuration} min'),
-                ],
-              ),
-            ],
+                        SizedBox(
+                          width: Get.width * 0.08,
+                        ),
+                        RatingBar.builder(
+                          initialRating: mcqs[index].courseRating.toDouble(),
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: 15,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 0.1),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {},
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '  ${mcqs[index].courseFirstTitle}',
+                      style: mcqewsStyle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: Get.width * 0.02,
+                    ),
+                    const Icon(Icons.access_time, size: 11),
+                    Text(
+                        '${mcqs[index].courseHRDuration} hr ${mcqs[index].courseMinDuration} min'),
+                  ],
+                ),
+              ],
+            ),
           ),
         );
       },
