@@ -43,7 +43,7 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
             courses[0].courseImage,
             ListTile(
               title: Text(
-                '${courses[0].courseFirstTitle}',
+                courses[0].courseFirstTitle,
                 style: topicStyle,
               ),
               trailing: const Icon(Icons.favorite_border),
@@ -54,21 +54,23 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
               children: [
                 TextButton(
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 36, vertical: 18),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 36, vertical: 18),
                     foregroundColor: Colors.white,
-                    backgroundColor: Color(0xFF2B3C98),
+                    backgroundColor: const Color(0xFF2B3C98),
                   ),
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     'ENROLL NOW',
                     style: whiteColor,
                   ),
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 36, vertical: 18),
-                    side: BorderSide(color: Color(0xFF2B3C98), width: 1),
-                    foregroundColor: Color(0xFF2B3C98),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 36, vertical: 18),
+                    side: const BorderSide(color: Color(0xFF2B3C98), width: 1),
+                    foregroundColor: const Color(0xFF2B3C98),
                     backgroundColor: Colors.white,
                   ),
                   onPressed: () {
@@ -79,7 +81,7 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
                       ),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'ADD TO CART',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),

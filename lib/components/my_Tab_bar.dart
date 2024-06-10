@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:rebirthdemo/components/constants.dart';
+import 'package:rebirthdemo/components/course_content_lesson.dart';
+import 'package:rebirthdemo/components/listtile_for_course_review.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({super.key});
@@ -19,6 +23,10 @@ class _MyTabBarState extends State<MyTabBar> {
 
   @override
   Widget build(BuildContext context) {
+    List<ListtileForCourseReview> reviewlist =
+        ListtileForCourseReview.getlistt();
+    List<CourseContentLesson> contentList =
+        CourseContentLesson.getCourseContent();
     return Column(
       children: [
         Row(
@@ -114,10 +122,71 @@ class _MyTabBarState extends State<MyTabBar> {
           index: _selectedIndex,
           children: [
             Container(
+              width: double.infinity,
+              height: Get.height * 0.5,
+              child: ListView.builder(
+                itemCount: contentList.length,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return contentList[index];
+                },
+              ),
+            ),
+            Container(
                 height: Get.height * 0.5,
-                child: const Center(child: Text('Content for Tab 1'))),
-            const Center(child: Text('Content for Tab 2')),
-            const Center(child: Text('Content for Tab 3')),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'About Courses',
+                        style: productTitleStyle,
+                      ),
+                    ),
+                    const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
+                      child: Text(
+                        'Unlock the captivating world of Japanese language and culture with Reiwa Nepal\'s comprehensive learning platform. Unlock the captivating world of Read more',
+                        style: navtxtStyle,
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.02,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Tutor',
+                        style: productTitleStyle,
+                      ),
+                    ),
+                    const ListTile(
+                      leading: CircleAvatar(
+                        radius: 25,
+                        backgroundImage: AssetImage('assets/images/1.jpg'),
+                      ),
+                      title: Text(
+                        'Master',
+                        style: productTitleStyle,
+                      ),
+                      subtitle: Text('Japanese Tutor'),
+                    ),
+                  ],
+                )),
+            Container(
+              height: Get.height * 0.5,
+              child: ListView.builder(
+                itemCount: reviewlist.length,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return reviewlist[index];
+                },
+              ),
+            ),
           ],
         ),
       ],

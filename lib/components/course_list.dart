@@ -34,7 +34,7 @@ class Course {
 List<Course> getCourse() {
   return [
     Course(
-      courseFirstTitle: 'Japanese Basic N5\n Jap Ese Basic N5',
+      courseFirstTitle: 'Japanese Basic N5\nJap Ese Basic N5',
       // courseSecondTitle: 'Course 1',
       coursePrice: 500,
       courseRating: 4,

@@ -27,3 +27,7 @@ const editprofileStyle = TextStyle(
     fontSize: 16, fontWeight: FontWeight.w400, color: Color(0xFF737272));
 const whiteColor = TextStyle(
     fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFFFFFFFF));
+const courseContentStyle = TextStyle(
+    fontWeight: FontWeight.w600, fontSize: 16, color: Color(0xFF676767));
+const timeStyle = TextStyle(
+    fontWeight: FontWeight.w800, fontSize: 10, color: Color(0xFF8A8A8A));
