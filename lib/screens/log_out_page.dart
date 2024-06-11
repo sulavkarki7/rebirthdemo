@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rebirthdemo/components/constants.dart';
+
 import 'package:rebirthdemo/screens/home_screen.dart';
 
 class LogOutPage extends StatelessWidget {

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:get/get.dart';
 import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/components/course_content_lesson.dart';
 import 'package:rebirthdemo/components/listtile_for_course_review.dart';
+import 'package:rebirthdemo/screens/cart_page.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({super.key});
@@ -114,8 +116,8 @@ class _MyTabBarState extends State<MyTabBar> {
         ),
         Divider(
           height: 0,
-          indent: 20,
-          endIndent: 20,
+          indent: 15,
+          endIndent: 15,
           color: const Color(0xFF2B3C98).withOpacity(0.4),
         ),
         IndexedStack(
@@ -134,6 +136,7 @@ class _MyTabBarState extends State<MyTabBar> {
               ),
             ),
             Container(
+                margin: EdgeInsets.only(left: 7.0),
                 height: Get.height * 0.5,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,6 +192,110 @@ class _MyTabBarState extends State<MyTabBar> {
             ),
           ],
         ),
+        // if (_selectedIndex != 2)
+        _selectedIndex != 2
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 36, vertical: 18),
+                      foregroundColor: Colors.white,
+                      backgroundColor: const Color(0xFF2B3C98),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      'ENROLL NOW',
+                      style: whiteColor,
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 36, vertical: 18),
+                      side:
+                          const BorderSide(color: Color(0xFF2B3C98), width: 1),
+                      foregroundColor: const Color(0xFF2B3C98),
+                      backgroundColor: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CartPage(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'ADD TO CART',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ],
+              )
+            : Container(
+                margin: const EdgeInsets.fromLTRB(8, 0, 8, 2),
+                height: Get.height * 0.08,
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.grey[300]!)),
+                child: Row(
+                  children: [
+                    RatingBar.builder(
+                      initialRating: 4,
+                      minRating: 0,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemSize: 18, // Adjust the size of the stars
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 0.1),
+                      itemBuilder: (context, _) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {
+                        // log('Rating is: $rating');
+                      },
+                    ),
+                    SizedBox(
+                      width: Get.width * 0.06,
+                    ),
+                    const Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Write a review",
+                          hintStyle: TextStyle(
+                              fontWeight: FontWeight.w300, color: Colors.grey),
+                          border: InputBorder.none,
+                          isDense: true,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          fixedSize: const Size(100, 40),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 3),
+                          foregroundColor: Colors.white,
+                          backgroundColor: const Color(0xFF2B3C98),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          'ADD REVIEW',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
       ],
     );
   }

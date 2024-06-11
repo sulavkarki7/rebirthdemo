@@ -4,7 +4,6 @@ import 'package:rebirthdemo/components/my_Tab_bar.dart';
 
 import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/components/course_list.dart';
-import 'package:rebirthdemo/screens/cart_page.dart';
 
 class CourseDetailPage extends StatefulWidget {
   const CourseDetailPage({
@@ -47,45 +46,6 @@ class _CourseDetailPageState extends State<CourseDetailPage> {
             trailing: const Icon(Icons.favorite_border),
           ),
           const MyTabBar(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TextButton(
-                style: TextButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color(0xFF2B3C98),
-                ),
-                onPressed: () {},
-                child: const Text(
-                  'ENROLL NOW',
-                  style: whiteColor,
-                ),
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
-                  side: const BorderSide(color: Color(0xFF2B3C98), width: 1),
-                  foregroundColor: const Color(0xFF2B3C98),
-                  backgroundColor: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CartPage(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'ADD TO CART',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-              ),
-            ],
-          )
         ],
       ),
     );

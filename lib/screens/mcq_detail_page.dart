@@ -19,11 +19,6 @@ class McqDetailPage extends StatelessWidget {
     List<ReviewListForMcqDetail> getRealReview =
         ReviewListForMcqDetail.getReviewForMcq();
 
-    final mediaQuery = MediaQuery.of(context);
-    final availableHeight = mediaQuery.size.height -
-        mediaQuery.padding.top -
-        mediaQuery.padding.bottom -
-        kToolbarHeight;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -64,7 +59,7 @@ class McqDetailPage extends StatelessWidget {
                                 builder: (context) => const McqExamPage()));
                       },
                       style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(5))),
                         fixedSize: const Size(80, 40),
                         padding: const EdgeInsets.symmetric(
@@ -178,7 +173,7 @@ class McqDetailPage extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 5.0),
                       child: TextButton(
                         style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           fixedSize: const Size(100, 40),

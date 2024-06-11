@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
+
 import 'package:rebirthdemo/components/constants.dart';
 
-import 'package:rebirthdemo/components/course_list.dart';
-import 'package:rebirthdemo/components/mcq_list.dart';
-import 'package:rebirthdemo/components/news_list.dart';
 import 'package:rebirthdemo/screens/cart_page.dart';
 import 'package:rebirthdemo/screens/course_page.dart';
 import 'package:rebirthdemo/screens/homenav_page.dart';

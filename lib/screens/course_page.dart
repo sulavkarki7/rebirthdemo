@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/components/coursecontainer_for_courses_list.dart';
+import 'package:rebirthdemo/components/filter_bottom_sheet.dart';
 
 class CoursePage extends StatefulWidget {
   final bool autoFocusSearch;
@@ -15,7 +15,7 @@ enum FilterOption { all, beginnerClass, beginnerClass2 }
 
 class _CoursePageState extends State<CoursePage> {
   bool radioStatus = false;
-  FilterOption? _selectedFilter = FilterOption.beginnerClass;
+  FilterOption? _selectedFilter = FilterOption.all; // Updated default value
   late FocusNode myFocusNode;
 
   List<String> allCourses = [
@@ -43,8 +43,9 @@ class _CoursePageState extends State<CoursePage> {
     super.dispose();
   }
 
-  void _applyFilter() {
+  void _applyFilter(FilterOption? filter) {
     setState(() {
+      _selectedFilter = filter;
       if (_selectedFilter == FilterOption.all) {
         filteredCourses = allCourses;
       } else if (_selectedFilter == FilterOption.beginnerClass) {
@@ -58,8 +59,6 @@ class _CoursePageState extends State<CoursePage> {
       }
     });
   }
-
-  int _selectedValue = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +77,6 @@ class _CoursePageState extends State<CoursePage> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               focusNode: myFocusNode,
-
-              // autofocus: true,
               decoration: InputDecoration(
                 focusColor: Colors.green[100],
                 hintText: 'Search',
@@ -107,78 +104,9 @@ class _CoursePageState extends State<CoursePage> {
             backgroundColor: Colors.white,
             context: context,
             builder: (context) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                height: Get.height * 0.7,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Container(
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Filter Option',
-                          style: productTitleStyle,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          'Courses',
-                          style: productTitleStyle,
-                        ),
-                      ),
-                    ),
-                    ListTile(
-                      title: const Text('All'),
-                      leading: Radio<FilterOption>(
-                        value: FilterOption.all,
-                        groupValue: _selectedFilter,
-                        onChanged: (FilterOption? value) {
-                          setState(() {
-                            _selectedFilter =
-                                value; // Set _selectedFilter to the selected value
-                          });
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: const Text('Beginner class'),
-                      leading: Radio<FilterOption>(
-                        value: FilterOption.beginnerClass,
-                        groupValue: _selectedFilter,
-                        onChanged: (FilterOption? value) {
-                          setState(() {
-                            _selectedFilter = value;
-
-                            _applyFilter();
-                          });
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: const Text('Beginner class2'),
-                      leading: Radio<FilterOption>(
-                        value: FilterOption.beginnerClass2,
-                        groupValue: _selectedFilter,
-                        onChanged: (FilterOption? value) {
-                          setState(() {
-                            _selectedFilter = value;
-                            _applyFilter();
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+              return FilterBottomSheet(
+                selectedFilter: _selectedFilter,
+                onFilterChanged: _applyFilter,
               );
             },
           );
