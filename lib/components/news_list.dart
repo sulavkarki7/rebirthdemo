@@ -77,6 +77,8 @@ class _NewsListState extends State<NewsList> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       children: news
           .map((news) => NewsListtile(
                 newsTitle: news.newsTitle,

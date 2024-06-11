@@ -37,7 +37,7 @@ List<Course> getCourse() {
       courseFirstTitle: 'Japanese Basic N5\nJap Ese Basic N5',
       // courseSecondTitle: 'Course 1',
       coursePrice: 500,
-      courseRating: 4,
+      courseRating: 3,
       courseImage: Image.asset('assets/images/Rectangle 11.png'),
       courseHRDuration: 1,
       courseMinDuration: 50,
@@ -147,6 +147,7 @@ class _CourseListState extends State<CourseList> {
                       initialRating: courses[index].courseRating.toDouble(),
                       minRating: 1,
                       direction: Axis.horizontal,
+                      ignoreGestures: true,
                       allowHalfRating: true,
                       itemCount: 5,
                       itemSize: 15, // Adjust the size of the stars

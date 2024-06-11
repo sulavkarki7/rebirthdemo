@@ -125,6 +125,7 @@ class McqContainerForPageList extends StatelessWidget {
                         initialRating: mcqRating.toDouble(),
                         minRating: 1,
                         direction: Axis.horizontal,
+                        ignoreGestures: true,
                         allowHalfRating: true,
                         itemCount: 5,
                         itemSize: 15, // Adjust the size of the stars

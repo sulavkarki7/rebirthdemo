@@ -36,7 +36,7 @@ List<Mcq> getCMcq() {
     Mcq(
       courseFirstTitle: 'Japanese Basic N5',
       coursePrice: 500,
-      courseRating: 4,
+      courseRating: 3,
       courseImage: Image.asset('assets/images/33.png'),
       courseHRDuration: 1,
       courseMinDuration: 50,
@@ -109,6 +109,7 @@ class _McqListState extends State<McqList> {
                         RatingBar.builder(
                           initialRating: mcqs[index].courseRating.toDouble(),
                           minRating: 1,
+                          ignoreGestures: true,
                           direction: Axis.horizontal,
                           allowHalfRating: true,
                           itemCount: 5,

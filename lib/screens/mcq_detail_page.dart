@@ -3,7 +3,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:rebirthdemo/components/constants.dart';
 import 'package:rebirthdemo/components/mcq_container_for_page_list.dart';
+import 'package:rebirthdemo/components/review_list_for_mcq_detail.dart';
 import 'package:rebirthdemo/components/review_mcq.dart';
+import 'package:rebirthdemo/screens/mcq_exam_page.dart';
 
 class McqDetailPage extends StatelessWidget {
   const McqDetailPage({
@@ -14,6 +16,8 @@ class McqDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<McqContainerForPageList> imcq = McqContainerForPageList.getMcq();
     List<ReviewMcq> getReviewMcq = ReviewMcq.getReviewMcq();
+    List<ReviewListForMcqDetail> getRealReview =
+        ReviewListForMcqDetail.getReviewForMcq();
 
     final mediaQuery = MediaQuery.of(context);
     final availableHeight = mediaQuery.size.height -
@@ -21,13 +25,16 @@ class McqDetailPage extends StatelessWidget {
         mediaQuery.padding.bottom -
         kToolbarHeight;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, size: 20, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
-          ' All MCQ',
+          'MCQ',
           style: appbarTitleStyle,
         ),
       ),
@@ -47,18 +54,18 @@ class McqDetailPage extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 12.0),
-                    child: Text(
-                      'Quiz Description : ',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF2B3C98),
-                      ),
-                    ),
+                    child: Text('Quiz Description : ', style: topicStyle),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const McqExamPage()));
+                      },
                       style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
                         fixedSize: const Size(80, 40),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 6, vertical: 3),
@@ -111,8 +118,8 @@ class McqDetailPage extends StatelessWidget {
                     BoxDecoration(border: Border.all(color: Colors.grey[300]!)),
                 child: const ListTile(
                   leading: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage('assets/images/teacher.jpg'),
+                    radius: 25,
+                    backgroundImage: AssetImage('assets/images/pp.jpg'),
                   ),
                   title: Text(
                     'Mr. John Doe',
@@ -170,24 +177,36 @@ class McqDetailPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 5.0),
                       child: TextButton(
-                          style: TextButton.styleFrom(
-                            fixedSize: const Size(100, 40),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 3),
-                            foregroundColor: Colors.white,
-                            backgroundColor: const Color(0xFF2B3C98),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            'ADD REVIEW',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w500),
-                          )),
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          fixedSize: const Size(100, 40),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 3),
+                          foregroundColor: Colors.white,
+                          backgroundColor: const Color(0xFF2B3C98),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          'ADD REVIEW',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
+            ListView.builder(
+                itemCount: getRealReview.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return getRealReview[index];
+                }),
           ],
         ),
       ),

@@ -120,6 +120,7 @@ class Coursecontainerforcourses extends StatelessWidget {
                         initialRating: courseRating.toDouble(),
                         minRating: 1,
                         direction: Axis.horizontal,
+                        ignoreGestures: false,
                         allowHalfRating: true,
                         itemCount: 5,
                         itemSize: 15, // Adjust the size of the stars

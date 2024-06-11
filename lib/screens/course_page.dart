@@ -15,7 +15,7 @@ enum FilterOption { all, beginnerClass, beginnerClass2 }
 
 class _CoursePageState extends State<CoursePage> {
   bool radioStatus = false;
-  FilterOption? _selectedFilter = FilterOption.all;
+  FilterOption? _selectedFilter = FilterOption.beginnerClass;
   late FocusNode myFocusNode;
 
   List<String> allCourses = [
@@ -58,6 +58,8 @@ class _CoursePageState extends State<CoursePage> {
       }
     });
   }
+
+  int _selectedValue = 1;
 
   @override
   Widget build(BuildContext context) {

@@ -134,7 +134,7 @@ class _HomenavPageState extends State<HomenavPage> {
             Container(
               margin: const EdgeInsets.all(5.0),
               color: Colors.white,
-              height: Get.height * 0.3,
+              // height: Get.height * 0.3,
               width: double.infinity,
               child: const NewsList(),
             ),
